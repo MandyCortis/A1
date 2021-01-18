@@ -8,12 +8,11 @@ using Pathfinding;
 public class customAIMoveScript : MonoBehaviour
 {
     Seeker seeker;
-
     Path pathToFollow;
 
-
     public Transform target;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         Debug.Log(this.name);
@@ -22,6 +21,8 @@ public class customAIMoveScript : MonoBehaviour
 
         seeker.StartPath(transform.position, target.position, ReadyToMove);
     }
+
+
     //when the path is generated this method is called.
     void ReadyToMove(Path p)
     {
@@ -29,6 +30,7 @@ public class customAIMoveScript : MonoBehaviour
         pathToFollow = p;
         StartCoroutine(moveTowardsPath());
     }
+
 
     IEnumerator moveTowardsPath()
     {
@@ -43,73 +45,6 @@ public class customAIMoveScript : MonoBehaviour
         }
         yield return null;
     }
-
-    //Task: can we give the robot a tail, just like we did with snake?
-
-
-
-/*
- *  void drawTail(int length)
-{
-    clearTail();
-
-    if (pastPositions.Count>length)
-    {
-        //nope
-        //I do have enough positions in the past positions list
-        //the first block behind the player
-        int tailStartIndex = pastPositions.Count - 1;
-        int tailEndIndex = tailStartIndex - length;
-
-
-        //if length = 4, this should give me the last 4 blocks
-        for (int snakeblocks = tailStartIndex;snakeblocks>tailEndIndex;snakeblocks--)
-        {
-            //prints the past position and its order in the list
-            //Debug.Log(pastPositions[snakeblocks].Position + " " + pastPositions[snakeblocks].PositionOrder);
-
-            Debug.Log(snakeblocks);
-
-            pastPositions[snakeblocks].BreadcrumbBox = Instantiate(breadcrumbBox, pastPositions[snakeblocks].Position, Quaternion.identity);
-            pastPositions[snakeblocks].BreadcrumbBox.GetComponent<SpriteRenderer>().color = snakeColor;
-
-        }
-
-    } 
-
-    if (firstrun)
-    {
-
-        //I don't have enough positions in the past positions list
-        for(int count =length;count>0;count--)
-        {
-            positionRecord fakeBoxPos = new positionRecord();
-            float ycoord = count * -1;
-            fakeBoxPos.Position = new Vector3(0f, ycoord);
-           // Debug.Log(new Vector3(0f, ycoord));
-            //fakeBoxPos.BreadcrumbBox = Instantiate(breadcrumbBox, fakeBoxPos.Position, Quaternion.identity);
-            //fakeBoxPos.BreadcrumbBox.GetComponent<SpriteRenderer>().color = Color.yellow;
-            pastPositions.Add(fakeBoxPos);
-
-
-
-
-        }
-        firstrun = false;
-        drawTail(length);
-        //Debug.Log("Not long enough yet");
-    }
-
-}
-
-
-*/
-
-// Update is called once per frame
-void Update()
-{
-
-}
 }
 
 
