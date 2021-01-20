@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class KU2 : MonoBehaviour
 {
     [SerializeField]
     GameObject obstacles;
@@ -13,20 +13,24 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     List<Vector3> existingObstacles;
 
-    [SerializeField]
-    GameObject ai;
-
+    private float timer = 0.0f;
+    readonly private float waitTime = 1.0f;
 
     void Start()
     {
-        existingObstacles = new List<Vector3>();       
+        AddObstacle();
+        StartAI();
     }
 
-    public void Scan()
+    void Update()
     {
-        GameObject.Find("AStarGrid").GetComponent<AstarPath>().Scan();
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            GameObject.Find("AStarGrid").GetComponent<AstarPath>().Scan();
+            timer = waitTime;
+        }
     }
-
 
     private Vector3 RandomLocation()
     {
@@ -45,24 +49,18 @@ public class GameManager : MonoBehaviour
         return pos;
     }
 
-
     public void AddObstacle()
     {
-       Vector3 pos = RandomLocation();
+        for (int counter = 0; counter < 5; counter++)
+        {
+            Vector3 pos = RandomLocation();
+            existingObstacles.Add(pos);
+            GameObject obs = Instantiate(obstacles, pos, Quaternion.identity);
+            obs.transform.parent = obsParent;
 
-       existingObstacles.Add(pos);
-       GameObject obs = Instantiate(obstacles, pos, Quaternion.identity);
-       obs.transform.parent = obsParent;
+        }
 
     }
-
-    
-       
-    public void SpawnAI()
-    {
-        Instantiate(ai, RandomLocation(), Quaternion.identity);
-    }
-
 
     public void StartAI()
     {
