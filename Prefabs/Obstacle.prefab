@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5508066553331820118}
   - component: {fileID: 5428411582602843182}
   - component: {fileID: 8809905494272236925}
+  - component: {fileID: 7719614116361234132}
   m_Layer: 8
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,3 +97,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7719614116361234132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491328531252932401}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c035b8df0d82fd445b4dae1e4f549109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obsWaypoints: []
+  objectToMove: {fileID: 5508066553331820118}
+  obstacles: {fileID: 3491328531252932401}
+  obsParent: {fileID: 0}
+  wpParent: {fileID: 0}
+  obsWP: {fileID: 6357432385466878212, guid: 3b54bbf86c3154441bb068f3bd2c7449, type: 3}
+  existingObstacles: []
